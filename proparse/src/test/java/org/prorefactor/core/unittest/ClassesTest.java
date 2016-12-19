@@ -51,6 +51,15 @@ public class ClassesTest {
   }
 
   @Test
+  public void test02() throws Exception {
+    ParseUnit unit = new ParseUnit(new File("src/test/resources/data/rssw/pct/ChildClass.cls"), session);
+    assertNull(unit.getTopNode());
+    assertNull(unit.getRootScope());
+    unit.treeParser01();
+    assertNotNull(unit.getTopNode());
+  }
+
+  @Test
   public void test03() throws Exception {
     ParseUnit unit = new ParseUnit(new File("src/test/resources/data/rssw/pct/ScopeTest.cls"), session);
     assertNull(unit.getTopNode());
