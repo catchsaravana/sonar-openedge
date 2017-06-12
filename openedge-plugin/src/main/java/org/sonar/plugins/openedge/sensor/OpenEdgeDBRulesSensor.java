@@ -32,6 +32,7 @@ import org.sonar.api.batch.sensor.SensorContext;
 import org.sonar.api.batch.sensor.SensorDescriptor;
 import org.sonar.api.utils.log.Logger;
 import org.sonar.api.utils.log.Loggers;
+import org.sonar.plugins.openedge.api.Constants;
 import org.sonar.plugins.openedge.api.checks.OpenEdgeDumpFileCheck;
 import org.sonar.plugins.openedge.foundation.OpenEdgeComponents;
 import org.sonar.plugins.openedge.foundation.OpenEdgeDB;
@@ -50,7 +51,7 @@ public class OpenEdgeDBRulesSensor implements Sensor {
 
   @Override
   public void describe(SensorDescriptor descriptor) {
-    descriptor.onlyOnLanguage(OpenEdgeDB.KEY).name(getClass().getSimpleName());
+    descriptor.onlyOnLanguage(Constants.DB_LANGUAGE_KEY).name(getClass().getSimpleName());
   }
 
   @Override
@@ -63,7 +64,7 @@ public class OpenEdgeDBRulesSensor implements Sensor {
       ruleTime.put(entry.getKey().ruleKey().toString(), 0L);
     }
 
-    for (InputFile file : context.fileSystem().inputFiles(context.fileSystem().predicates().hasLanguage(OpenEdgeDB.KEY))) {
+    for (InputFile file : context.fileSystem().inputFiles(context.fileSystem().predicates().hasLanguage(Constants.DB_LANGUAGE_KEY))) {
       try {
         LOG.debug("Generating ParseTree for dump file {}", file.relativePath());
         long time = System.currentTimeMillis();
