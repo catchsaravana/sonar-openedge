@@ -323,6 +323,11 @@ public class BugFixTest {
   }
 
   @Test
+  public void testAbstractKw() throws Exception {
+    genericTest("abstractkw.p");
+  }
+
+  @Test
   public void testLexer01() throws Exception {
     TokenStream stream = genericLex("lex.p");
   }
